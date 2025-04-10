@@ -1,51 +1,40 @@
+from flask import Flask, render_template, request
 from cryptography.fernet import Fernet
-from flask import Flask, render_template, jsonify, request
 
 app = Flask(__name__)
 
 @app.route('/')
-def hello_world():
-    return render_template('hello.html')
+def home():
+    return render_template('crypto.html')
 
-# Route GET de chiffrement avec clé fournie en paramètre (Exercice 2)
-@app.route('/encrypt/', methods=['POST'])
-def encryptage():
-    data = request.get_json()
-    valeur = data.get('message')
-    user_key = data.get('key')
-
-    if not valeur or not user_key:
-        return jsonify({'error': 'Message et clé sont requis'}), 400
+@app.route('/encrypt-form', methods=['POST'])
+def encrypt_form():
+    key = request.form['key']
+    message = request.form['message']
 
     try:
-        f = Fernet(user_key.encode())
-        valeur_bytes = valeur.encode()
-        token = f.encrypt(valeur_bytes)
-        return jsonify({'encrypted_message': token.decode()})
+        f = Fernet(key.encode())
+        encrypted = f.encrypt(message.encode()).decode()
+        return render_template('crypto.html', result=f"Message chiffré : {encrypted}")
     except Exception as e:
-        return jsonify({'error': str(e)}), 400
+        return render_template('crypto.html', result=f"Erreur : {str(e)}")
 
-# Route POST de déchiffrement avec clé fournie (Exercice 1 & 2)
-@app.route('/decrypt/', methods=['POST'])
-def decryptage():
-    data = request.get_json()
-    token = data.get('message')
-    user_key = data.get('key')
-
-    if not token or not user_key:
-        return jsonify({'error': 'Message et clé sont requis'}), 400
+@app.route('/decrypt-form', methods=['POST'])
+def decrypt_form():
+    key = request.form['key']
+    message = request.form['message']
 
     try:
-        f = Fernet(user_key.encode())
-        valeur = f.decrypt(token.encode()).decode()
-        return jsonify({'decrypted_message': valeur})
+        f = Fernet(key.encode())
+        decrypted = f.decrypt(message.encode()).decode()
+        return render_template('crypto.html', result=f"Message déchiffré : {decrypted}")
     except Exception as e:
-        return jsonify({'error': str(e)}), 400
+        return render_template('crypto.html', result=f"Erreur : {str(e)}")
 
-# Route utilitaire pour générer une clé Fernet
+# Bonus : route pour générer une clé
 @app.route('/generate-key/')
 def generate_key():
-    return jsonify({'key': Fernet.generate_key().decode()})
+    return {'key': Fernet.generate_key().decode()}
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
