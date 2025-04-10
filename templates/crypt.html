@@ -3,87 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Crypto App EFREI</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background-color: #f5f5f5;
-        }
-        h1, h2 {
-            color: #2c3e50;
-        }
-        form {
-            background-color: #ffffff;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            max-width: 600px;
-        }
-        label {
-            font-weight: bold;
-        }
-        textarea, input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            background-color: #126dad;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0e578d;
-        }
-        .result {
-            background-color: #e8f4fc;
-            padding: 15px;
-            border-left: 5px solid #126dad;
-            border-radius: 4px;
-            max-width: 600px;
-        }
-    </style>
 </head>
 <body>
     <h1>🔐 Application de Cryptographie</h1>
 
-    <!-- Formulaire de chiffrement -->
     <h2>🔒 Chiffrement</h2>
     <form action="/encrypt-form" method="post">
-        <label for="key_encrypt">Clé :</label>
-        <input type="text" name="key" id="key_encrypt" required>
+        <label for="key_encrypt">Clé :</label><br>
+        <input type="text" name="key" id="key_encrypt" required><br><br>
 
-        <label for="message_encrypt">Message :</label>
-        <textarea name="message" id="message_encrypt" rows="4" required></textarea>
+        <label for="message_encrypt">Message :</label><br>
+        <textarea name="message" id="message_encrypt" rows="4" cols="50" required></textarea><br><br>
 
         <button type="submit">Chiffrer</button>
     </form>
 
-    <!-- Formulaire de déchiffrement -->
     <h2>🔓 Déchiffrement</h2>
     <form action="/decrypt-form" method="post">
-        <label for="key_decrypt">Clé :</label>
-        <input type="text" name="key" id="key_decrypt" required>
+        <label for="key_decrypt">Clé :</label><br>
+        <input type="text" name="key" id="key_decrypt" required><br><br>
 
-        <label for="message_decrypt">Message chiffré :</label>
-        <textarea name="message" id="message_decrypt" rows="4" required></textarea>
+        <label for="message_decrypt">Message chiffré :</label><br>
+        <textarea name="message" id="message_decrypt" rows="4" cols="50" required></textarea><br><br>
 
         <button type="submit">Déchiffrer</button>
     </form>
 
-    <!-- Affichage du résultat -->
     {% if result %}
-        <div class="result">
-            <h2>📝 Résultat :</h2>
-            <p><strong>{{ result }}</strong></p>
-        </div>
+        <h2>📝 Résultat :</h2>
+        <p><strong>{{ result }}</strong></p>
     {% endif %}
 </body>
 </html>
