@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request
-from cryptography.fernet import Fernet
+from cryptgraphy.fernet import Fernet
 
 app = Flask(__name__)
 
 # Page d'accueil
 @app.route('/')
 def home():
-    return render_template('crypto.html')
+    return render_template('crypt.html')
 
 # Traitement du chiffrement
 @app.route('/encrypt-form', methods=['POST'])
@@ -21,7 +21,7 @@ def encrypt_message():
     except Exception as error:
         result = f"Erreur : {str(error)}"
 
-    return render_template('crypto.html', result=result)
+    return render_template('crypt.html', result=result)
 
 # Traitement du déchiffrement
 @app.route('/decrypt-form', methods=['POST'])
@@ -36,7 +36,7 @@ def decrypt_message():
     except Exception as error:
         result = f"Erreur : {str(error)}"
 
-    return render_template('crypto.html', result=result)
+    return render_template('crypt.html', result=result)
 
 # Génération d'une nouvelle clé
 @app.route('/generate-key/')
