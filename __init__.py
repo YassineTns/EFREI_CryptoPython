@@ -21,7 +21,7 @@ def encrypt_message():
     except Exception as error:
         result = f"Erreur : {str(error)}"
 
-    return render_template('crypt.html', result=result)
+    return render_template('crypto.html', result=result)
 
 # Traitement du déchiffrement
 @app.route('/decrypt-form', methods=['POST'])
@@ -36,7 +36,7 @@ def decrypt_message():
     except Exception as error:
         result = f"Erreur : {str(error)}"
 
-    return render_template('crypt.html', result=result)
+    return render_template('crypto.html', result=result)
 
 # Génération d'une nouvelle clé
 @app.route('/generate-key/')
