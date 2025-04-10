@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Crypto App EFREI</title>
+</head>
+<body>
+    <h1>🔐 Application de Cryptographie</h1>
+
+    <h2>🔒 Chiffrement</h2>
+    <form action="/encrypt-form" method="post">
+        <label for="key_encrypt">Clé :</label><br>
+        <input type="text" name="key" id="key_encrypt" required><br><br>
+
+        <label for="message_encrypt">Message :</label><br>
+        <textarea name="message" id="message_encrypt" rows="4" cols="50" required></textarea><br><br>
+
+        <button type="submit">Chiffrer</button>
+    </form>
+
+    <h2>🔓 Déchiffrement</h2>
+    <form action="/decrypt-form" method="post">
+        <label for="key_decrypt">Clé :</label><br>
+        <input type="text" name="key" id="key_decrypt" required><br><br>
+
+        <label for="message_decrypt">Message chiffré :</label><br>
+        <textarea name="message" id="message_decrypt" rows="4" cols="50" required></textarea><br><br>
+
+        <button type="submit">Déchiffrer</button>
+    </form>
+
+    {% if result %}
+        <h2>📝 Résultat :</h2>
+        <p><strong>{{ result }}</strong></p>
+    {% endif %}
+</body>
+</html>
