@@ -6,7 +6,7 @@ app = Flask(__name__)
 # Page d'accueil
 @app.route('/')
 def home():
-    return render_template('crypt.html')
+    return render_template('crypto.html')
 
 # Traitement du chiffrement
 @app.route('/encrypt-form', methods=['POST'])
