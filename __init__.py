@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from cryptgraphy.fernet import Fernet
+from cryptography.fernet import Fernet
 
 app = Flask(__name__)
 
